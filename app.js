@@ -14,12 +14,10 @@ function getTemperature() {
 	weather
 		.getTemperature()
 		.then((results) => {
-			console.log(results);
+			console.log(results.temp);
 		})
 		.catch((err) => console.log(err));
 }
 
-
-
-getWeather();
 getTemperature();
+
