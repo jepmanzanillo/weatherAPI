@@ -8,22 +8,30 @@
  * 
  */
 class Weather {
-    constructor(city='quezon'){
-        this.apiID = '66e3269cc90edc90d1da4619e0a9f898';
-        this.city = city;
-    }
+	constructor(city) {
+		this.apiID = '66e3269cc90edc90d1da4619e0a9f898';
+		this.city = city;
+	}
 
-    //fetch weather from API
-    async getWeather() {
-        const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiID}`);
+	//fetch weather from API
+	async getWeather() {
+		const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiID}`);
 
-        const resData = await res.json();
+		const resData = await res.json();
 
-        return resData.main;
-    }
+		return resData.weather[0];
+	}
+	// fetch temperature from API
+	async getTemperature() {
+		const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiID}`);
 
-    //change waether location
-    changeLocation(city) {
-        this.city = city;
-    }
+		const resData = await res.json();
+
+		return resData.main;
+	}
+
+	//change weather location
+	changeLocation(city) {
+		this.city = city;
+	}
 }
