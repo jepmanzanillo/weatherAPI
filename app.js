@@ -1,23 +1,32 @@
 // init weather
 const weather = new Weather('quezon');
+// init ui
+const ui = new UI();
 
-function getWeather() {
+// when DOM loads
+document.addEventListener('DOMContentLoaded', () => {
 	weather
 		.getWeather()
 		.then((results) => {
-			console.log(results);
+			ui.paint(results);
+			//console.log(results);
 		})
 		.catch((err) => console.log(err));
-}
+});
 
-function getTemperature() {
+// change location event
+document.getElementById('w-change-btn').addEventListener('click', (e) => {
+	const city = document.getElementById('city').value;
+
+	weather.changeLocation(city);
 	weather
-		.getTemperature()
+		.getWeather()
 		.then((results) => {
-			console.log(results.temp);
+			ui.paint(results);
+			//console.log(results);
 		})
 		.catch((err) => console.log(err));
-}
 
-getTemperature();
-
+		$('#locModal').modal('hide');
+});
+//weather.changeLocation('cebu');

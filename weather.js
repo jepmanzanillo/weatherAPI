@@ -15,22 +15,21 @@ class Weather {
 
 	//fetch weather from API
 	async getWeather() {
-		const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiID}`);
+		const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiID}`);
 
-		const resData = await res.json();
+        const resData = await res.json();
+        
+        // const wData = resData.weather[0];
 
-		return resData.weather[0];
-	}
-	// fetch temperature from API
-	async getTemperature() {
-		const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiID}`);
+        // const tempData = resData.main;
 
-		const resData = await res.json();
-
-		return resData.main;
+        // const locName = resData.name;
+        
+        return resData;
 	}
 
-	//change weather location
+    
+    	//change weather location
 	changeLocation(city) {
 		this.city = city;
 	}
