@@ -1,5 +1,9 @@
+// init storage
+const storage = new Storage();
+// get location data
+const weatherLocation = storage.getLocationData();
 // init weather
-const weather = new Weather('quezon');
+const weather = new Weather(weatherLocation.city);
 // init ui
 const ui = new UI();
 
@@ -19,6 +23,9 @@ document.getElementById('w-change-btn').addEventListener('click', (e) => {
 	const city = document.getElementById('city').value;
 
 	weather.changeLocation(city);
+
+	storage.setLocationData(city);
+	
 	weather
 		.getWeather()
 		.then((results) => {
@@ -27,6 +34,5 @@ document.getElementById('w-change-btn').addEventListener('click', (e) => {
 		})
 		.catch((err) => console.log(err));
 
-		$('#locModal').modal('hide');
+	$('#locModal').modal('hide');
 });
-//weather.changeLocation('cebu');
